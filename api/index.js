@@ -2,12 +2,14 @@ import express from "express";
 import dotenv from "dotenv";
 import databaseConnection from "./database/databaseConnection.js";
 import userRouter from "./routes/userRoutes.js";
+import authRouter from "./routes/authRoute.js";
 
 //Server PORT
 const SERVER_PORT = 3000;
 
 //Express config
 const app = express();
+app.use(express.json());
 
 //Dotenv config
 dotenv.config();
@@ -17,6 +19,7 @@ databaseConnection();
 
 //Routes
 app.use("/api/user", userRouter);
+app.use("/auth", authRouter);
 
 app.listen(SERVER_PORT, (req, res) => {
   try {
