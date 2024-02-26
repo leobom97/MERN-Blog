@@ -16,7 +16,7 @@ dotenv.config();
 databaseConnection();
 
 //Routes
-app.use("/test", userRouter);
+app.use("/api/user", userRouter);
 
 app.listen(SERVER_PORT, (req, res) => {
   try {

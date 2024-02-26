@@ -1,8 +1,8 @@
 import express from "express";
+import { test } from "../controllers/userController";
 const userRouter = express.Router();
 
-userRouter.get("/", (req, res) => {
-  res.send("Testando API");
-});
+//endpoint
+userRouter.get("/", test);
 
 export default userRouter;
