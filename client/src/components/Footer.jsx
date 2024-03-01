@@ -68,7 +68,11 @@ function FooterComponent() {
             <Footer.Icon href="#" icon={BsFacebook} />
             <Footer.Icon href="#" icon={BsInstagram} />
             <Footer.Icon href="#" icon={BsTwitter} />
-            <Footer.Icon href="https://github.com/leobom97" icon={BsGithub} />
+            <Footer.Icon
+              href="https://github.com/leobom97"
+              icon={BsGithub}
+              target="_blank"
+            />
             <Footer.Icon href="#" icon={BsDribbble} />
           </div>
         </div>
