@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import databaseConnection from "./database/databaseConnection.js";
 import userRouter from "./routes/userRoutes.js";
 import authRouter from "./routes/authRoute.js";
+import cookieParser from "cookie-parser";
 
 //Server PORT
 const SERVER_PORT = 3000;
@@ -10,6 +11,7 @@ const SERVER_PORT = 3000;
 //Express config
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
 //Dotenv config
 dotenv.config();
