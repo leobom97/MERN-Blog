@@ -101,7 +101,7 @@ function DashProfile() {
     }
     try {
       dispatch(updateStart());
-      const response = await fetch(`/api/user/update/${currentUser._id}`, {
+      const response = await fetch(`/user/update/${currentUser._id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",
