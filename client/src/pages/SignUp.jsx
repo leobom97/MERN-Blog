@@ -14,24 +14,23 @@ function SignUp() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!formData.username || !formData.email || !formData.password) {
-      return setErrorMessage("Please fill out all fields");
+      return setErrorMessage("Please fill out all fields.");
     }
     try {
       setLoading(true);
       setErrorMessage(null);
-      const res = await fetch("/auth/signup", {
+      const res = await fetch("/api/auth/signup", {
         method: "POST",
-        headers: { "Content-type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      if (data.success == false) {
+      if (data.success === false) {
         return setErrorMessage(data.message);
       }
       setLoading(false);
       if (res.ok) {
         navigate("/sign-in");
-        alert("User succefully created");
       }
     } catch (error) {
       setErrorMessage(error.message);

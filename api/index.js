@@ -4,15 +4,10 @@ import databaseConnection from "./database/databaseConnection.js";
 import userRouter from "./routes/userRoutes.js";
 import authRouter from "./routes/authRoute.js";
 import cookieParser from "cookie-parser";
-import cors from "cors";
+import path from "path";
 
 //Server PORT
 const SERVER_PORT = 3000;
-
-//Express config
-const app = express();
-app.use(express.json());
-app.use(cookieParser());
 
 //Dotenv config
 dotenv.config();
@@ -20,12 +15,12 @@ dotenv.config();
 //Database connection
 databaseConnection();
 
-//Routes
-app.use("/user", userRouter);
-app.use("/auth", authRouter);
+const __dirname = path.resolve();
 
-//CORS
-app.use(cors("Access-Control-Allow-Origin", "*"));
+//Express config
+const app = express();
+app.use(express.json());
+app.use(cookieParser());
 
 app.listen(SERVER_PORT, (req, res) => {
   try {
@@ -33,6 +28,16 @@ app.listen(SERVER_PORT, (req, res) => {
   } catch (error) {
     console.log(`Server error ocorred: ${error}`);
   }
+});
+
+//Routes
+app.use("/api/user", userRouter);
+app.use("/api/auth", authRouter);
+
+app.use(express.static(path.join(__dirname, "/client/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
 });
 
 app.use((err, req, res, next) => {

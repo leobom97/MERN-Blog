@@ -3,8 +3,8 @@ import { signUp, signin, google } from "../controllers/authController.js";
 
 const authRouter = express.Router();
 
-authRouter.post("/signup", signUp);
-authRouter.post("/signin", signin);
-authRouter.post("/google", google);
+authRouter.post("/signup", signUp); //Cadastro de novo usuário
+authRouter.post("/signin", signin); //Login de usário
+authRouter.post("/google", google); //Login utilizando conta do Google
 
 export default authRouter;

@@ -17,22 +17,23 @@ function SignIn() {
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.id]: event.target.value.trim() });
   };
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     if (!formData.email || !formData.password) {
-      dispatch(signInFailure("Please fill all the fields"));
+      return dispatch(signInFailure("Please fill all the fields"));
     }
     try {
       dispatch(signInStart());
-      const res = await fetch("/auth/signin", {
+      const res = await fetch("/api/auth/signin", {
         method: "POST",
-        headers: { "Content-type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      if (data.success == false) {
+      if (data.success === false) {
         dispatch(signInFailure(data.message));
       }
+
       if (res.ok) {
         dispatch(signInSuccess(data));
         navigate("/");
