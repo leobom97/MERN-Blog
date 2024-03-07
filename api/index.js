@@ -5,6 +5,7 @@ import userRouter from "./routes/userRoutes.js";
 import authRouter from "./routes/authRoute.js";
 import cookieParser from "cookie-parser";
 import path from "path";
+import postRouter from "./routes/postRoute.js";
 
 //Server PORT
 const SERVER_PORT = 3000;
@@ -33,6 +34,7 @@ app.listen(SERVER_PORT, (req, res) => {
 //Routes
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/post", postRouter);
 
 app.use(express.static(path.join(__dirname, "/client/dist")));
 
