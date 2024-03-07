@@ -51,7 +51,10 @@ export const signin = async (req, res, next) => {
     if (!validPassword) {
       return next(errorHandler(400, "Invalid Password"));
     }
-    const token = jwt.sign({ id: validUser._id }, JWT_SECRET);
+    const token = jwt.sign(
+      { id: validUser._id, isAdmin: validUser.isAdmin },
+      JWT_SECRET
+    );
     const { password: pass, ...rest } = validUser._doc;
     res
       .status(200)
@@ -69,7 +72,10 @@ export const google = async (req, res, next) => {
   try {
     const user = await User.findOne({ email });
     if (user) {
-      const token = jwt.sign({ id: user._id }, JWT_SECRET);
+      const token = jwt.sign(
+        { id: user._id, isAdmin: user.isAdmin },
+        JWT_SECRET
+      );
       const { password, ...rest } = user._doc;
       res
         .status(200)
@@ -88,7 +94,10 @@ export const google = async (req, res, next) => {
         password: hashedPassword,
         profilePicture: googlePhotoUrl,
       });
-      const token = jwt.sign({ id: user._id }, JWT_SECRET);
+      const token = jwt.sign(
+        { id: user._id, isAdmin: newUser.isAdmin },
+        JWT_SECRET
+      );
       const { password, ...rest } = user._doc;
       res
         .status(200)
