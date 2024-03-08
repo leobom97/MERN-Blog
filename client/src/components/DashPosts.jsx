@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { Table } from "flowbite-react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-function DashPosts() {
+export default function DashPosts() {
   const { currentUser } = useSelector((state) => state.user);
-  const [userPosts, setUserPosts] = useState({});
+  const [userPosts, setUserPosts] = useState([]);
+  console.log(userPosts);
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -24,13 +25,14 @@ function DashPosts() {
       fetchPosts();
     }
   }, [currentUser._id]);
+
   return (
     <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
       {currentUser.isAdmin && userPosts.length > 0 ? (
         <>
-          <Table>
+          <Table hoverable className="shadow-md">
             <Table.Head>
-              <Table.HeadCell>Date update</Table.HeadCell>
+              <Table.HeadCell>Date updated</Table.HeadCell>
               <Table.HeadCell>Post image</Table.HeadCell>
               <Table.HeadCell>Post title</Table.HeadCell>
               <Table.HeadCell>Category</Table.HeadCell>
@@ -39,17 +41,20 @@ function DashPosts() {
                 <span>Edit</span>
               </Table.HeadCell>
             </Table.Head>
-            {userPosts.map((posts) => {
+            {userPosts.map((post) => (
               <Table.Body className="divide-y">
-                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                <Table.Row
+                  key="posts"
+                  className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                >
                   <Table.Cell>
-                    {new Date(posts.updatedAt).toLocaleDateString()}
+                    {new Date(post.updatedAt).toLocaleDateString()}
                   </Table.Cell>
                   <Table.Cell>
-                    <Link to={`/posts/${posts.slug}`}>
+                    <Link to={`/post/${post.slug}`}>
                       <img
-                        src={posts.image}
-                        alt={posts.title}
+                        src={post.image}
+                        alt={post.title}
                         className="w-20 h-10 object-cover bg-gray-500"
                       />
                     </Link>
@@ -57,12 +62,12 @@ function DashPosts() {
                   <Table.Cell>
                     <Link
                       className="font-medium text-gray-900 dark:text-white"
-                      to={`/posts/${posts.slug}`}
+                      to={`/post/${post.slug}`}
                     >
-                      {posts.title}
+                      {post.title}
                     </Link>
                   </Table.Cell>
-                  <Table.Cell>{posts.category}</Table.Cell>
+                  <Table.Cell>{post.category}</Table.Cell>
                   <Table.Cell>
                     <span className="font-medium text-red-500 hover:underline cursor-pointer">
                       Delete
@@ -70,15 +75,15 @@ function DashPosts() {
                   </Table.Cell>
                   <Table.Cell>
                     <Link
-                      className="text-teal-500"
-                      to={`/update-post/${posts._id}`}
+                      className="text-teal-500 hover:underline"
+                      to={`/update-post/${post._id}`}
                     >
                       <span>Edit</span>
                     </Link>
                   </Table.Cell>
                 </Table.Row>
-              </Table.Body>;
-            })}
+              </Table.Body>
+            ))}
           </Table>
         </>
       ) : (
@@ -87,5 +92,3 @@ function DashPosts() {
     </div>
   );
 }
-
-export default DashPosts;

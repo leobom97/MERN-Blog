@@ -34,7 +34,7 @@ app.listen(SERVER_PORT, (req, res) => {
 //Routes
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
-app.use("/api/post", postRouter);
+app.use("/api/posts", postRouter);
 
 app.use(express.static(path.join(__dirname, "/client/dist")));
 
