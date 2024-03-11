@@ -57,10 +57,11 @@ export default function DashUsers() {
         }
       );
       const data = await res.json();
-      if (!res.ok) {
-        console.log(data.message);
+      if (res.ok) {
+        setUsers((prev) => prev.filter((user) => user._id !== userIdToDelete));
+        setShowModal(false);
       } else {
-        setUsers((prev) => prev.filter((post) => post._id !== postIdToDelete));
+        console.log(data.message);
       }
     } catch (error) {
       console.log(error.message);
