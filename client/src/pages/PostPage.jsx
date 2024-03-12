@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Button, Spinner } from "flowbite-react";
 import CalltoAction from "../components/CalltoAction";
+import CommentSection from "../components/CommentSection";
 
 function PostPage() {
   const { postSlug } = useParams();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [post, setPost] = useState(null);
   useEffect(() => {
@@ -68,6 +69,7 @@ function PostPage() {
       <div className="max-w-4xl mx-auto w-full">
         <CalltoAction />
       </div>
+      <CommentSection postId={post._id} />
     </main>
   );
 }

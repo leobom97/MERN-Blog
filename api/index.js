@@ -6,6 +6,7 @@ import authRouter from "./routes/authRoute.js";
 import cookieParser from "cookie-parser";
 import path from "path";
 import postRouter from "./routes/postRoute.js";
+import commentRouter from "./routes/commentsRoute.js";
 
 //Server PORT
 const SERVER_PORT = 3000;
@@ -35,6 +36,7 @@ app.listen(SERVER_PORT, (req, res) => {
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);
+app.use("/api/comment", commentRouter);
 
 app.use(express.static(path.join(__dirname, "/client/dist")));
 
