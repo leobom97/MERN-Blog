@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createComment,
+  deleteComment,
   editComment,
   getPostComments,
   likeComment,
@@ -12,5 +13,6 @@ commentRouter.post("/create", verifyToken, createComment);
 commentRouter.get("/getPostComments/:postId", getPostComments);
 commentRouter.put("/likeComment/:commentId", verifyToken, likeComment);
 commentRouter.put("/editComment/:commentId", verifyToken, editComment);
+commentRouter.delete("/deleteComment/:commentId", verifyToken, deleteComment);
 
 export default commentRouter;
