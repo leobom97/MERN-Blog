@@ -17,6 +17,7 @@ dotenv.config();
 //Database connection
 databaseConnection();
 
+// directory name
 const __dirname = path.resolve();
 
 //Express config
