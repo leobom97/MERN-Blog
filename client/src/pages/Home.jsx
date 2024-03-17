@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Calltoaction from "../components/Calltoaction";
 import { useEffect, useState } from "react";
 import PostCard from "../components/PostCard";
 
