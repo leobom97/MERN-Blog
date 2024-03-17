@@ -1,5 +1,4 @@
 import React from "react";
-import Calltoaction from "../components/Calltoaction";
 
 function Projects() {
   return (
@@ -9,7 +8,6 @@ function Projects() {
         Build fun and engaging projects while learning HTML, CSS, and
         JavaScript!
       </p>
-      <Calltoaction />
     </div>
   );
 }
