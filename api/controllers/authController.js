@@ -1,6 +1,6 @@
 import User from "../models/Users.js";
 import bcrypt from "bcrypt";
-import errorHandler from "../utils/error.js";
+import errorHandler from "../middlewares/error.js";
 import jwt from "jsonwebtoken";
 
 const JWT_SECRET = "Leonardo";

@@ -7,7 +7,7 @@ import {
   getcomments,
   likeComment,
 } from "../controllers/commentController.js";
-import { verifyToken } from "../utils/verifyUser.js";
+import { verifyToken } from "../middlewares/verifyUser.js";
 const commentRouter = express.Router();
 
 commentRouter.post("/create", verifyToken, createComment);

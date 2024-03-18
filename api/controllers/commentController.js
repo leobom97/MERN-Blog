@@ -1,5 +1,5 @@
 import Comment from "../models/Comment.js";
-import errorHandler from "../utils/error.js";
+import errorHandler from "../middlewares/error.js";
 
 export const createComment = async (req, res, next) => {
   try {

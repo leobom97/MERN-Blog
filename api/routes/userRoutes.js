@@ -7,7 +7,7 @@ import {
   getUser,
   getUsers,
 } from "../controllers/userController.js";
-import { verifyToken } from "../utils/verifyUser.js";
+import { verifyToken } from "../middlewares/verifyUser.js";
 
 const userRouter = express.Router();
 
